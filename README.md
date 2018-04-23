@@ -1,2 +1,0 @@
-# azisapp
-Maps base app
