@@ -78,9 +78,6 @@ public class EditProfileActivity extends AppCompatActivity {
     @NotEmpty(message = "Address should not be empty")
     EditText etAddress;
 
-    @NotEmpty(message = "Weight should not be empty")
-    EditText etWeight;
-
     @Email(message = "Email not valid")
     EditText etEmail;
 
@@ -131,7 +128,7 @@ public class EditProfileActivity extends AppCompatActivity {
         relEditAddress.setOnClickListener(onClickListener);
         relEditEmail.setOnClickListener(onClickListener);
         relEditPassword.setOnClickListener(onClickListener);
-
+        relEditBirthdate.setOnClickListener(onClickListener);
         tvEditFotoProfile.setOnClickListener(onClickListener);
 
         Button btnSave = (Button) findViewById(R.id.btnSaveProfile);
@@ -151,10 +148,10 @@ public class EditProfileActivity extends AppCompatActivity {
             tvBirthdate.setText(userJson.getString("birth_date"));
             etFirstName.setText( userJson.getString("first_name"));
             etLastName.setText(userJson.getString("last_name"));
-            etWeight.setText(String.valueOf(userJson.getInt("weight")));
             etAddress.setText(userJson.getString("address"));
             etEmail.setText(userJson.getString("email"));
             String photoUrl = common.getFullUrl(userJson.getString("photo"));
+            Log.d("url", photoUrl);
             Glide.with(context).load(photoUrl).into(fotoProfile);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -308,7 +305,6 @@ public class EditProfileActivity extends AppCompatActivity {
             userJson.put("address", etAddress.getText().toString());
             userJson.put("email", etEmail.getText().toString());
             userJson.put("birth_date", tvBirthdate.getText().toString());
-            userJson.put("weight", etWeight.getText().toString());
 
             MyHTTPRequest myHTTPRequest = new MyHTTPRequest(this, view, url,
                     "POST", userJson, httpResponse, progressBar);
