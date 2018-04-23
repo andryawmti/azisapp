@@ -1,18 +1,14 @@
-package com.kudubisa.app.navdrawertemplate;
+package com.kudubisa.app.azisapp;
 
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -34,20 +30,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.kudubisa.app.navdrawertemplate.fragment.DatePickerFragment;
-import com.kudubisa.app.navdrawertemplate.model.LoginCredentials;
-import com.kudubisa.app.navdrawertemplate.model.User;
-import com.kudubisa.app.navdrawertemplate.remote.AndroidMultiPartEntity;
-import com.kudubisa.app.navdrawertemplate.remote.Common;
-import com.kudubisa.app.navdrawertemplate.remote.MyHTTPRequest;
-import com.kudubisa.app.navdrawertemplate.remote.UploadToServer;
-import com.mobsandgeeks.saripaar.DateFormats;
+import com.kudubisa.app.azisapp.fragment.DatePickerFragment;
+import com.kudubisa.app.azisapp.remote.AndroidMultiPartEntity;
+import com.kudubisa.app.azisapp.remote.Common;
+import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
+import com.kudubisa.app.azisapp.remote.UploadToServer;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
-import com.mobsandgeeks.saripaar.annotation.Min;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Pattern;
 
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -57,9 +48,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -99,7 +87,6 @@ public class EditProfileActivity extends AppCompatActivity {
     Validator validator;
 
     TextView tvBirthdate;
-    TextView tvPregnancyStart;
 
     ProgressBar progressBar;
 
@@ -128,7 +115,6 @@ public class EditProfileActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         tvBirthdate = (TextView) findViewById(R.id.tvBirthdate);
-        tvPregnancyStart = (TextView) findViewById(R.id.tvPregnancyStart);
         TextView tvEditFotoProfile = (TextView) findViewById(R.id.edit_foto_profile);
         fotoProfile = (ImageView) findViewById(R.id.foto_profile);
 
@@ -136,19 +122,15 @@ public class EditProfileActivity extends AppCompatActivity {
         RelativeLayout relEditEmail = (RelativeLayout) findViewById(R.id.rel_edit_email);
         RelativeLayout relEditPassword = (RelativeLayout) findViewById(R.id.rel_edit_password);
         RelativeLayout relEditBirthdate = (RelativeLayout) findViewById(R.id.relEditBirthDate);
-        RelativeLayout relEditPregnancyStart = (RelativeLayout) findViewById(R.id.relEditPregnancyStart);
 
         etAddress = (EditText) findViewById(R.id.etAddress);
         etFirstName = (EditText) findViewById(R.id.etEditFirstName);
         etLastName = (EditText) findViewById(R.id.etEditLastName);
-        etWeight = (EditText) findViewById(R.id.etWeight);
         etEmail = (EditText) findViewById(R.id.etEmail);
 
         relEditAddress.setOnClickListener(onClickListener);
         relEditEmail.setOnClickListener(onClickListener);
         relEditPassword.setOnClickListener(onClickListener);
-        relEditBirthdate.setOnClickListener(onClickListener);
-        relEditPregnancyStart.setOnClickListener(onClickListener);
 
         tvEditFotoProfile.setOnClickListener(onClickListener);
 
@@ -167,16 +149,13 @@ public class EditProfileActivity extends AppCompatActivity {
         JSONObject userJson = getProfile();
         try {
             tvBirthdate.setText(userJson.getString("birth_date"));
-            tvPregnancyStart.setText(userJson.getString("pregnancy_start_at"));
             etFirstName.setText( userJson.getString("first_name"));
             etLastName.setText(userJson.getString("last_name"));
             etWeight.setText(String.valueOf(userJson.getInt("weight")));
             etAddress.setText(userJson.getString("address"));
             etEmail.setText(userJson.getString("email"));
             String photoUrl = common.getFullUrl(userJson.getString("photo"));
-            Glide.with(context)
-                    .load(photoUrl)
-                    .into(fotoProfile);
+            Glide.with(context).load(photoUrl).into(fotoProfile);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -190,10 +169,6 @@ public class EditProfileActivity extends AppCompatActivity {
             switch (view.getId()) {
                 case R.id.relEditBirthDate:
                     datePickerFragment = DatePickerFragment.newInstance(R.id.tvBirthdate);
-                    datePickerFragment.show(getFragmentManager(), "datePicker");
-                    break;
-                case R.id.relEditPregnancyStart:
-                    datePickerFragment = DatePickerFragment.newInstance(R.id.tvPregnancyStart);
                     datePickerFragment.show(getFragmentManager(), "datePicker");
                     break;
                 case R.id.edit_foto_profile:
@@ -333,7 +308,6 @@ public class EditProfileActivity extends AppCompatActivity {
             userJson.put("address", etAddress.getText().toString());
             userJson.put("email", etEmail.getText().toString());
             userJson.put("birth_date", tvBirthdate.getText().toString());
-            userJson.put("pregnancy_start", tvPregnancyStart.getText().toString());
             userJson.put("weight", etWeight.getText().toString());
 
             MyHTTPRequest myHTTPRequest = new MyHTTPRequest(this, view, url,

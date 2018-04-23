@@ -1,11 +1,10 @@
-package com.kudubisa.app.navdrawertemplate;
+package com.kudubisa.app.azisapp;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +12,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.kudubisa.app.navdrawertemplate.remote.Common;
-import com.kudubisa.app.navdrawertemplate.remote.MyHTTPRequest;
+import com.kudubisa.app.azisapp.remote.Common;
+import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
@@ -25,7 +24,6 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 /**
@@ -129,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
             userSignup.put("first_name", etFirstName.getText().toString());
             userSignup.put("last_name", etLastName.getText().toString());
             userSignup.put("email", etEmail.getText().toString());
-            userSignup.put("password", etPassword);
+            userSignup.put("password", etPassword.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

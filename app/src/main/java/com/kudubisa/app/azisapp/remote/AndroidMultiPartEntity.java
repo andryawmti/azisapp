@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate.remote;
+package com.kudubisa.app.azisapp.remote;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;

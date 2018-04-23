@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kudubisa.app.navdrawertemplate">
+    package="com.kudubisa.app.azisapp">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.kudubisa.app.azisapp.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +20,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"/>
+            android:name="com.kudubisa.app.azisapp.MainActivity"/>
         <activity
-            android:name=".AccountSettingsActivity"/>
+            android:name="com.kudubisa.app.azisapp.AccountSettingsActivity"/>
         <activity
-            android:name=".EditProfileActivity"/>
-        <activity android:name=".EditPasswordActivity"/>
-        <activity android:name=".ResetPasswordActivity"></activity>
-        <activity android:name=".SignUpActivity"/>
+            android:name="com.kudubisa.app.azisapp.EditProfileActivity"/>
+        <activity android:name="com.kudubisa.app.azisapp.EditPasswordActivity"/>
+        <activity android:name="com.kudubisa.app.azisapp.ResetPasswordActivity"></activity>
+        <activity android:name="com.kudubisa.app.azisapp.SignUpActivity"/>
     </application>
 
 </manifest>

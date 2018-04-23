@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate;
+package com.kudubisa.app.azisapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.kudubisa.app.navdrawertemplate", appContext.getPackageName());
+        assertEquals("com.kudubisa.app.azisapp", appContext.getPackageName());
     }
 }

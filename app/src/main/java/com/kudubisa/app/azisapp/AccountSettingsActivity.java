@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate;
+package com.kudubisa.app.azisapp;
 
 import android.content.Context;
 import android.content.Intent;

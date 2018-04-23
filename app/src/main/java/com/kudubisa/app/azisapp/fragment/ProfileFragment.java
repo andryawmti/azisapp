@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate.fragment;
+package com.kudubisa.app.azisapp.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.kudubisa.app.navdrawertemplate.AccountSettingsActivity;
-import com.kudubisa.app.navdrawertemplate.EditProfileActivity;
-import com.kudubisa.app.navdrawertemplate.R;
-import com.kudubisa.app.navdrawertemplate.remote.Common;
+import com.kudubisa.app.azisapp.EditProfileActivity;
+import com.kudubisa.app.azisapp.R;
+import com.kudubisa.app.azisapp.remote.Common;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 /**
  * Created by asus on 4/14/18.
@@ -47,9 +44,6 @@ public class ProfileFragment extends Fragment{
         tvEmail = (TextView) view.findViewById(R.id.tv_email);
         tvAddress = (TextView) view.findViewById(R.id.tv_address);
         tvBirthDate = (TextView) view.findViewById(R.id.tv_birth_date);
-        tvPregnancy = (TextView) view.findViewById(R.id.tv_pregnancy);
-        tvBloodType = (TextView) view.findViewById(R.id.tv_blood);
-        tvWeight = (TextView) view.findViewById(R.id.tv_weight);
 
         JSONObject user;
         common = new Common();

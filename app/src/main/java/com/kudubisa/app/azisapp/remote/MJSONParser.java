@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate.remote;
+package com.kudubisa.app.azisapp.remote;
 
 import org.json.JSONObject;
 

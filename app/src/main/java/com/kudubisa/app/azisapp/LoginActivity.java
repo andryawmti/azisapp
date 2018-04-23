@@ -1,11 +1,10 @@
-package com.kudubisa.app.navdrawertemplate;
+package com.kudubisa.app.azisapp;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +12,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.kudubisa.app.navdrawertemplate.model.LoginCredentials;
-import com.kudubisa.app.navdrawertemplate.model.UserLogin;
-import com.kudubisa.app.navdrawertemplate.remote.MyHTTPRequest;
+import com.kudubisa.app.azisapp.model.LoginCredentials;
+import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText loginPassword;
     SharedPreferences preferences;
     LoginCredentials loginCredentials;
-    UserLogin userLogin;
     ProgressBar progressBar;
     View mView;
     private Context context;

@@ -1,22 +1,18 @@
-package com.kudubisa.app.navdrawertemplate.remote;
+package com.kudubisa.app.azisapp.remote;
 
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import java.io.File;
 import java.io.IOException;
 
 import static android.view.View.GONE;
@@ -26,7 +22,7 @@ import static android.view.View.GONE;
  */
 
 public class UploadToServer extends AsyncTask<Void, Integer, String> {
-    private static final String BASE_URL = "http://dev2.dadadasnoopdog.com";
+    private static final String BASE_URL = "http://azis.dadadasnoopdog.com";
 
     private String TAG = "upload";
     private ProgressBar mProgressBar;

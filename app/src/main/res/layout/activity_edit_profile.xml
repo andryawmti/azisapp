@@ -138,64 +138,6 @@
                 android:background="#E1E1E1"/>
 
             <RelativeLayout
-                android:id="@+id/relEditPregnancyStart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:background="?android:attr/selectableItemBackground">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="Pregnancy Start"
-                    android:textSize="@dimen/label_size"/>
-
-                <TextView
-                    android:id="@+id/tvPregnancyStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="Date"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="18sp"/>
-
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#E1E1E1"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="Weight"
-                    android:textSize="@dimen/label_size"/>
-
-                <EditText
-                    android:id="@+id/etWeight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:inputType="number"
-                    android:hint="56 Kg"
-                    android:background="@android:color/transparent"/>
-
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#E1E1E1"/>
-
-            <RelativeLayout
                 android:id="@+id/rel_edit_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

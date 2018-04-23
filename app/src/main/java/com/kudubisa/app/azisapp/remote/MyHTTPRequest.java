@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate.remote;
+package com.kudubisa.app.azisapp.remote;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -21,7 +21,7 @@ import java.net.URL;
  */
 
 public class MyHTTPRequest extends AsyncTask<String, Void, String> {
-    private static final String BASE_URL = "http://dev2.dadadasnoopdog.com";
+    private static final String BASE_URL = "http://azis.dadadasnoopdog.com";
     private static final String MY_HTTP_REQUEST = "MyHTTPRequest";
     Context mContext;
     JSONObject mJSONObject;

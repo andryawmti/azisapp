@@ -1,14 +1,11 @@
-package com.kudubisa.app.navdrawertemplate.fragment;
+package com.kudubisa.app.azisapp.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import com.kudubisa.app.navdrawertemplate.R;
 
 import java.util.Calendar;
 

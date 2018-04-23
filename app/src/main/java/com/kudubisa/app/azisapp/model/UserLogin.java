@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate.model;
+package com.kudubisa.app.azisapp.model;
 
 /**
  * Created by asus on 4/14/18.

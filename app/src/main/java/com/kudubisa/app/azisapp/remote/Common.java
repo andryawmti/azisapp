@@ -1,4 +1,4 @@
-package com.kudubisa.app.navdrawertemplate.remote;
+package com.kudubisa.app.azisapp.remote;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +13,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Common {
-    private static final String HOST = "http://dev2.dadadasnoopdog.com";
+    private static final String HOST = "http://azis.dadadasnoopdog.com";
 
     private final static String LOGIN_PREFS = "login_prefs";
     private final static String EMAIL = "email";

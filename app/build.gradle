@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
-        applicationId "com.kudubisa.app.navdrawertemplate"
+        applicationId "com.kudubisa.app.azisapp"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
