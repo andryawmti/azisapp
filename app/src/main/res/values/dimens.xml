@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="card_height">304dp</dimen>
+    <dimen name="card_title_height">40dp</dimen>
+    <dimen name="card_image_height">200dp</dimen>
+    <dimen name="card_button_height">48dp</dimen>
+    <dimen name="card_button_width">48dp</dimen>
+    <dimen name="title_padding">8dp</dimen>
+    <dimen name="title_height">160dp</dimen>
+    <dimen name="appbar_height">256dp</dimen>
+    <dimen name="article_keylines">72dp</dimen>
+    <dimen name="article_title">20sp</dimen>
+    <dimen name="article_subheading">16sp</dimen>
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="md_keyline">16dp</dimen>
+    <dimen name="list_body">14sp</dimen>
+    <dimen name="navheader_height">222dp</dimen>
+    <dimen name="navheader_padding">20dp</dimen>
+    <dimen name="navheader_profile_height">120dp</dimen>
+    <dimen name="navheader_profile_width">120dp</dimen>
+
+    <dimen name="profile_title">26sp</dimen>
+    <dimen name="profile_icon_size">35dp</dimen>
+    <dimen name="label_size">16sp</dimen>
+    <dimen name="btn_padding_horizontal">12dp</dimen>
+    <dimen name="btn_padding_vertical">16dp</dimen>
+    <dimen name="edittext_padding">12dp</dimen>
+    <dimen name="drawable_padding">12dp</dimen>
+    <dimen name="text_input_margin_top">15dp</dimen>
+</resources>

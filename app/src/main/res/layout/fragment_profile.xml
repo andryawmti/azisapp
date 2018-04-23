@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kudubisa.app.navdrawertemplate.fragment.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:contentDescription="@string/profile_picture_desc"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile_placeholder" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/profile_picture"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="24dp"
+        android:text="Mom's Profile"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/profile_title"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
+        app:layout_constraintStart_toStartOf="@+id/profile_picture" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp"
+            android:paddingTop="30dp">
+
+            <RelativeLayout
+                android:id="@+id/rel_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp">
+
+                <ImageView
+                    android:id="@+id/im_full_name"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/im_full_name"
+                    android:text="@string/profile_name"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_full_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_full_name"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_full_name"
+                    android:layout_toRightOf="@+id/im_full_name"
+                    android:text="Full Name"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/label_size" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toTopOf="@+id/rel_two"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_one" />
+
+            <RelativeLayout
+                android:id="@+id/rel_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_one">
+
+                <ImageView
+                    android:id="@+id/im_email"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_email_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_email"
+                    android:layout_toRightOf="@+id/im_email"
+                    android:text="yoona.im@gmail.com"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_email_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_email"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_email"
+                    android:text="Email Address"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/label_size" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toTopOf="@+id/rel_three"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_two" />
+
+            <RelativeLayout
+                android:id="@+id/rel_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_two">
+
+                <ImageView
+                    android:id="@+id/im_address"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_location_on_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/im_address"
+                    android:text="Somewhere street NH32 B Seoul"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_address"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/im_address"
+                    android:text="Address"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/label_size" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toTopOf="@+id/rel_four"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_three" />
+
+            <RelativeLayout
+                android:id="@+id/rel_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_three">
+
+                <ImageView
+                    android:id="@+id/im_birth_date"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginStart="40dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_cake_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_birth_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_birth_date"
+                    android:text="April, 15 1993"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_birth_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_birth_date"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_birth_date"
+                    android:text="Birth Date"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/label_size" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toTopOf="@+id/rel_five"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_four" />
+
+            <RelativeLayout
+                android:id="@+id/rel_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_four">
+
+                <ImageView
+                    android:id="@+id/im_blood"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_blood_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_blood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@id/im_blood"
+                    android:text="AB"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_blood_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_blood"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_blood"
+                    android:text="Blood Type"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/label_size" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toTopOf="@+id/rel_six"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_five" />
+
+            <RelativeLayout
+                android:id="@+id/rel_six"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_five">
+
+                <ImageView
+                    android:id="@+id/im_pregnancy"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_pregnant_woman_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_pregnancy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_pregnancy"
+                    android:text="2 Weeks"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_pregnancy_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_pregnancy"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@id/im_pregnancy"
+                    android:text="Pregnancy Age"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/label_size" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line6"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toTopOf="@+id/rel_seven"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_six" />
+
+            <RelativeLayout
+                android:id="@+id/rel_seven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rel_six">
+
+                <ImageView
+                    android:id="@+id/im_weight"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@android:color/darker_gray"
+                    app:srcCompat="@drawable/ic_account_weight_metre_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_weight"
+                    android:text="56 Kg"
+                    android:textSize="@dimen/label_size" />
+
+                <TextView
+                    android:id="@+id/tv_weight_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_weight"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/im_weight"
+                    android:text="Body Weight"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="170dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
+</android.support.constraint.ConstraintLayout>

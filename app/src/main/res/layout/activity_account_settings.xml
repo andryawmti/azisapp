@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true">
+    
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/account_settings_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/account_settings_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rel_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvEditProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Edit Profile"
+                android:textSize="18sp"/>
+
+            <ImageButton
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                style="?android:borderlessButtonStyle"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E1E1E1"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_edit_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvEditAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Alamat"
+                android:textSize="18sp"/>
+
+            <ImageButton
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                style="?android:borderlessButtonStyle"/>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E1E1E1"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvEditEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Email"
+                android:textSize="18sp"/>
+
+            <ImageButton
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                style="?android:borderlessButtonStyle"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E1E1E1"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvEditPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Password"
+                android:textSize="18sp"/>
+
+            <ImageButton
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                style="?android:borderlessButtonStyle"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E1E1E1"/>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
