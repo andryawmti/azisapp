@@ -12,4 +12,5 @@
     <color name="dark_grey">#9E9E9E</color>
     <color name="darker_grey">#757575</color>
     <color name="underline_color">#E1E1E1</color>
+    <color name="button_grey">#757575</color>
 </resources>

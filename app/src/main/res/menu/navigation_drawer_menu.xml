@@ -23,11 +23,25 @@
             android:iconTintMode="src_in"/>
 
         <item
+            android:id="@+id/show_destination"
+            android:title="@string/show_destination"
+            android:icon="@drawable/ic_photo_library_black_24dp"
+            android:iconTint="@color/white"
+            android:iconTintMode="src_in"/>
+
+        <!--<item
+            android:id="@+id/show_maps"
+            android:title="@string/show_maps"
+            android:icon="@drawable/ic_location_on_black_24dp"
+            android:iconTint="@android:color/white"
+            android:iconTintMode="src_in"/>-->
+
+        <item
             android:id="@+id/logout"
             android:title="@string/logout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:iconTint="@android:color/white"
             android:iconTintMode="src_in"/>
-    </group>
+    </group>dadadasnoopdogdadadasnoopdog
 
 </menu>

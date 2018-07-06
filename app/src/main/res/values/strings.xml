@@ -13,4 +13,12 @@
     <string name="btn_signup">Sign Up</string>
     <string name="btn_facebook_login">Facebook</string>
     <string name="btn_google_login">Google</string>
+    <string name="gmaps_api_key">AIzaSyBOxThNkhxBOt1B8MrSYTxb2jqC0yd2dNs</string>
+    <string name="maps_direction_api_key">AIzaSyDqJi1Z6Dkx0YWCoPwqIhavyDsLQvx7JjA</string>
+    <string name="show_maps">Show Maps</string>
+    <string name="fragment_destination_title">Destination List</string>
+    <string name="item_title">Destination Title</string>
+    <string name="item_desc">Destination Description</string>
+    <string name="button_visit">Visit</string>
+    <string name="show_destination">Destination</string>
 </resources>

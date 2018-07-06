@@ -13,8 +13,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Common {
-    private static final String HOST = "http://azis.dadadasnoopdog.com";
-
+    private static final String HOST = "https://azis.kudubisa.com";
     private final static String LOGIN_PREFS = "login_prefs";
     private final static String EMAIL = "email";
     private final static String PASSWORD = "password";

@@ -25,6 +25,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.kudubisa.app.azisapp.fragment.DestinationFragment;
+import com.kudubisa.app.azisapp.fragment.MapsFragment;
 import com.kudubisa.app.azisapp.fragment.ProfileFragment;
 import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
 
@@ -70,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.profile_settings:
                     fragment = new ProfileFragment();
+                    loadFragment(fragment);
+                    break;
+                case R.id.show_destination:
+                    fragment = new DestinationFragment();
                     loadFragment(fragment);
                     break;
                 case R.id.logout:
