@@ -25,7 +25,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.kudubisa.app.azisapp.fragment.AboutFragment;
 import com.kudubisa.app.azisapp.fragment.DestinationFragment;
+import com.kudubisa.app.azisapp.fragment.HelpFragment;
 import com.kudubisa.app.azisapp.fragment.MapsFragment;
 import com.kudubisa.app.azisapp.fragment.ProfileFragment;
 import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
@@ -78,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new DestinationFragment();
                     loadFragment(fragment);
                     break;
+                case R.id.show_about:
+                    fragment = new AboutFragment();
+                    loadFragment(fragment);
+                    break;
+                case R.id.show_help:
+                    fragment = new HelpFragment();
+                    loadFragment(fragment);
+                    break;
                 case R.id.logout:
                     logout(mView);
                     break;
@@ -115,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         hideWelcome();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, fragment);
-        ft.addToBackStack(null);
+        ft.addToBackStack("tag");
         ft.commit();
     }
 
@@ -163,6 +173,10 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(EMAIL, "");
         editor.putString(PASSWORD, "");
         editor.apply();
+    }
+
+    public void setActionbarTitle(String title){
+        getSupportActionBar().setTitle(title);
     }
 
 }

@@ -39,11 +39,11 @@
         <activity android:name="com.kudubisa.app.azisapp.ResetPasswordActivity"></activity>
         <activity android:name="com.kudubisa.app.azisapp.SignUpActivity"/>
         <activity
-            android:name=".DestinationDetailActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".DestinationDetailActivity">
+            <!--android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity"/>-->
         </activity>
     </application>
 

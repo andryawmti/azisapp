@@ -2,6 +2,7 @@ package com.kudubisa.app.azisapp.recycler.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,13 +53,25 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
         holder.locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "view the location", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), DestinationDetailActivity.class);
+                intent.putExtra("id", destination.getId());
+                intent.putExtra("title", destination.getTitle());
+                intent.putExtra("description", destination.getDesc());
+                intent.putExtra("picture", destination.getImage());
+                intent.putExtra("longitude", destination.getLongitude());
+                intent.putExtra("latitude", destination.getLatitude());
+                v.getContext().startActivity(intent);
             }
         });
         holder.visitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Visit Destination", Toast.LENGTH_SHORT).show();
+                Uri gmmIntentUri = Uri.parse("google.navigation:q="+destination.getLatitude()
+                        +", "+destination.getLongitude()+"&mode=d");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                context.startActivity(mapIntent);
             }
         });
         if (destination.getImage() != "null") {

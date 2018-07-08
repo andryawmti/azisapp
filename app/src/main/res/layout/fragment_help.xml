@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/md_keyline"
+        android:text="How to use app"
+        android:textSize="@dimen/article_title"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help"
+        android:layout_marginStart="@dimen/md_keyline"
+        android:layout_marginEnd="@dimen/md_keyline"
+        android:layout_marginTop="@dimen/md_keyline"/>
+
+</LinearLayout>

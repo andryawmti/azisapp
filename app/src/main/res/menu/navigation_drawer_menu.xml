@@ -29,6 +29,34 @@
             android:iconTint="@color/white"
             android:iconTintMode="src_in"/>
 
+        <item
+            android:id="@+id/show_myspot"
+            android:title="@string/show_myspot"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:iconTint="@color/white"
+            android:iconTintMode="src_in"/>
+
+        <item
+            android:id="@+id/show_contribute"
+            android:title="@string/contribute"
+            android:icon="@drawable/ic_queue_play_next_black_24dp"
+            android:iconTint="@color/white"
+            android:iconTintMode="src_in"/>
+
+        <item
+            android:id="@+id/show_about"
+            android:title="@string/show_about"
+            android:icon="@drawable/ic_new_releases_black_24dp"
+            android:iconTint="@color/white"
+            android:iconTintMode="src_in"/>
+
+        <item
+            android:id="@+id/show_help"
+            android:title="@string/show_help"
+            android:icon="@drawable/ic_help_black_24dp"
+            android:iconTint="@color/white"
+            android:iconTintMode="src_in"/>
+
         <!--<item
             android:id="@+id/show_maps"
             android:title="@string/show_maps"
