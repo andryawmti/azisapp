@@ -424,15 +424,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
     //Requesting permission to access the Storage
     private void requestStoragePermission(){
-        if(ContextCompat.checkSelfPermission(context,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             return;
         }
-
-        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-
-
-        }
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){}
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 STORAGE_PERMISSION_CODE);
@@ -442,8 +437,8 @@ public class EditProfileActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode==STORAGE_PERMISSION_CODE){
-            if(grantResults.length>0&&grantResults[0] == PackageManager.PERMISSION_DENIED){
-                Toast.makeText(context,"Permission denied",Toast.LENGTH_LONG).show();
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED){
+                Toast.makeText(context,"Permission denied", Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(context,"Permission Granted", Toast.LENGTH_LONG).show();
             }

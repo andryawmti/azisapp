@@ -22,7 +22,7 @@ import static android.view.View.GONE;
  */
 
 public class UploadToServer extends AsyncTask<Void, Integer, String> {
-    private static final String BASE_URL = "http://azis.dadadasnoopdog.com";
+    private static final String BASE_URL = "https://azis.kudubisa.com";
 
     private String TAG = "upload";
     private ProgressBar mProgressBar;
