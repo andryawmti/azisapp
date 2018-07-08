@@ -21,15 +21,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kudubisa.app.azisapp.fragment.AboutFragment;
 import com.kudubisa.app.azisapp.fragment.DestinationFragment;
 import com.kudubisa.app.azisapp.fragment.HelpFragment;
 import com.kudubisa.app.azisapp.fragment.MapsFragment;
 import com.kudubisa.app.azisapp.fragment.ProfileFragment;
+import com.kudubisa.app.azisapp.remote.Common;
 import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
 
 import org.json.JSONException;
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private final static String EMAIL = "email";
     private final static String PASSWORD = "password";
     Context context = MainActivity.this;
+    private ImageView profilPiture;
+    private TextView profileName;
+    private Common common = new Common();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navView.getHeaderView(0);
+        profilPiture = (ImageView) headerView.findViewById(R.id.navheader_profile);
+        profileName = (TextView) headerView.findViewById(R.id.navheader_profile_name);
+        setNavHederProfile();
         navView.setNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
@@ -179,4 +190,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
+    public void setNavHederProfile() {
+        try {
+            JSONObject jsonObject = new JSONObject(common.getUserRaw(context));
+            String photoPath = common.getFullUrl(jsonObject.getString("photo"));
+            Log.d("photoPath", photoPath);
+            Glide.with(context).load(photoPath).into(profilPiture);
+            String fullName = jsonObject.getString("first_name") + " " + jsonObject.getString("last_name");
+            profileName.setText(fullName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
