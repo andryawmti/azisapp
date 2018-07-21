@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,10 @@ import com.kudubisa.app.azisapp.DestinationDetailActivity;
 import com.kudubisa.app.azisapp.R;
 import com.kudubisa.app.azisapp.model.Destination;
 import com.kudubisa.app.azisapp.remote.Common;
+import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -27,16 +32,19 @@ import java.util.List;
  */
 
 public class DestinationRecyclerAdapter extends RecyclerView.Adapter<DestinationRecyclerAdapter.ViewHolder>{
-    List<Destination> destinationList;
-    Context context;
-
+    private List<Destination> destinationList;
+    private Context context;
+    private Common common;
+    ProgressBar progressBar;
     public DestinationRecyclerAdapter(List<Destination> destinationList, Context context) {
         this.destinationList = destinationList;
         this.context = context;
+        common = new Common();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        progressBar = (ProgressBar) parent.findViewById(R.id.progressBar);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.destination_item_card, parent, false);
         return new ViewHolder(view);
     }
@@ -77,7 +85,6 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
             }
         });
         if (!destination.getImage().equals("null")) {
-            Common common = new Common();
             String picUrl = common.getFullUrl(destination.getImage());
             Glide.with(context).load(picUrl).into(holder.cardImage);
             Log.d("getImage", destination.getImage());
@@ -120,4 +127,28 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
             favouriteButton = (ImageButton) itemView.findViewById(R.id.favourite_button);
         }
     }
+
+    private void addToFavourite(View view, int destinationId) {
+        JSONObject params = new JSONObject();
+        String api_token = "";
+        try {
+            JSONObject userJson = new JSONObject(common.getUserRaw(context));
+            params.put("destination_id", destinationId);
+            params.put("user_id", userJson.getString("id"));
+            api_token = userJson.getString("api_token");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String url = common.getFullUrl("/api/destination/add-to-fav?api_token="+api_token);
+        MyHTTPRequest myHTTPRequest = new MyHTTPRequest(context, view, url, "POST",params, httpResponse, progressBar);
+        myHTTPRequest.execute();
+    }
+
+    MyHTTPRequest.HTTPResponse httpResponse = new MyHTTPRequest.HTTPResponse() {
+        @Override
+        public void response(String body, View view) {
+            Toast.makeText(context, "Added to your favourite", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
