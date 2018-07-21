@@ -44,8 +44,9 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        progressBar = (ProgressBar) parent.findViewById(R.id.progressBar);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.destination_item_card, parent, false);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
         return new ViewHolder(view);
     }
 
@@ -54,10 +55,15 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
         final Destination destination = destinationList.get(position);
         holder.cardTitle.setText(destination.getTitle());
         holder.cardText.setText(destination.getDesc());
+        if (destination.getFavourite().equals("1")) {
+            holder.favouriteButton.setColorFilter(context.getResources().getColor(R.color.colorAccent));
+        } else {
+            holder.favouriteButton.setColorFilter(context.getResources().getColor(R.color.button_grey));
+        }
         holder.favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "add to favourite", Toast.LENGTH_SHORT).show();
+                addToFavourite(v, destination.getId());
             }
         });
         holder.locationButton.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +134,7 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
         }
     }
 
-    private void addToFavourite(View view, int destinationId) {
+    private void addToFavourite(View view, String destinationId) {
         JSONObject params = new JSONObject();
         String api_token = "";
         try {
@@ -140,7 +146,7 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
             e.printStackTrace();
         }
 
-        String url = common.getFullUrl("/api/destination/add-to-fav?api_token="+api_token);
+        String url = "/api/destination/add-to-favourite?api_token="+api_token;
         MyHTTPRequest myHTTPRequest = new MyHTTPRequest(context, view, url, "POST",params, httpResponse, progressBar);
         myHTTPRequest.execute();
     }
@@ -148,7 +154,23 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
     MyHTTPRequest.HTTPResponse httpResponse = new MyHTTPRequest.HTTPResponse() {
         @Override
         public void response(String body, View view) {
-            Toast.makeText(context, "Added to your favourite", Toast.LENGTH_SHORT).show();
+            try {
+                JSONObject result = new JSONObject(body);
+                if (!result.getBoolean("error")) {
+                    Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
+                    ImageButton favBtn = (ImageButton) view.findViewById(R.id.favourite_button);
+                    if (result.getString("is_favourited").equals("1")) {
+                        favBtn.setColorFilter(context.getResources().getColor(R.color.colorAccent));
+                    } else {
+                        favBtn.setColorFilter(context.getResources().getColor(R.color.button_grey));
+                    }
+                } else {
+                    Toast.makeText(context, "Something was wrong dude sorry", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
     };
 }

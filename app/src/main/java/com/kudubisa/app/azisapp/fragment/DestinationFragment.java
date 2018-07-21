@@ -57,14 +57,16 @@ public class DestinationFragment extends Fragment {
 
         JSONObject user = null;
         String apiToken = "";
+        String userId = "";
         try {
             user = new JSONObject(common.getUserRaw(getContext()));
             apiToken = user.getString("api_token");
+            userId = user.getString("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        String URL = "/api/destination?api_token="+apiToken;
+        String URL = "/api/destination/get-destination/"+userId+"?api_token="+apiToken;
         Log.d("URL",URL);
         JSONObject jsonObject = new JSONObject();
         MyHTTPRequest httpRequest = new MyHTTPRequest(getContext(), view, URL, "GET",
@@ -88,6 +90,7 @@ public class DestinationFragment extends Fragment {
                     destination.setLatitude(destJson.getString("latitude"));
                     destination.setLongitude(destJson.getString("longitude"));
                     destination.setImage(destJson.getString("picture"));
+                    destination.setFavourite(destJson.getString("favourite"));
                     destinationList.add(destination);
                 }
 
