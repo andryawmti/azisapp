@@ -1,5 +1,6 @@
 package com.kudubisa.app.azisapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,21 +19,27 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.kudubisa.app.azisapp.remote.Common;
 
 /**
  * Created by asus on 7/5/18.
  */
 
 public class DestinationDetailActivity extends AppCompatActivity {
+    private Common common;
+    private Context context;
+    private Intent intent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_destination);
+        common = new Common();
+        context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
+        intent = getIntent();
 
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -40,7 +47,12 @@ public class DestinationDetailActivity extends AppCompatActivity {
         TextView description = (TextView) findViewById(R.id.description);
         description.setText(intent.getStringExtra("description"));
         ImageView placePicture = (ImageView) findViewById(R.id.place_picture);
-        //Glide.with(getApplicationContext()).load(intent.getStringExtra("picture")).into(placePicture);
+
+        /**
+         * Load destination picture
+         */
+        loadDestinationPicture(placePicture);
+
         placePicture.setImageDrawable(getDrawable(R.drawable.a));
         Double latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         Double longitude = Double.parseDouble(intent.getStringExtra("longitude"));
@@ -72,5 +84,12 @@ public class DestinationDetailActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadDestinationPicture(ImageView placePicture) {
+        if (!intent.getStringExtra("picture").equals("null")) {
+            String picUrl = common.getFullUrl(intent.getStringExtra("picture"));
+            Glide.with(getApplicationContext()).load(picUrl).into(placePicture);
+        }
     }
 }

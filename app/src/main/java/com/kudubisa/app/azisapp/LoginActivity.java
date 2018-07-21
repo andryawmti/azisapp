@@ -113,12 +113,12 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Welcome "+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                 if (jsonObject.getBoolean("error")==false){
                     String userJsonRaw = jsonObject.getString("user");
-//                    JSONObject userObejct = new JSONObject(userJsonRaw);
                     modifyPreferences(userJsonRaw);
                     ifLoginSuccess();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     };

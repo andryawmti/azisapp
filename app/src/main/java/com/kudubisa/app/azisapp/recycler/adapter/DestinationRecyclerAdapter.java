@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.kudubisa.app.azisapp.DestinationDetailActivity;
 import com.kudubisa.app.azisapp.R;
 import com.kudubisa.app.azisapp.model.Destination;
+import com.kudubisa.app.azisapp.remote.Common;
 
 import java.util.List;
 
@@ -74,8 +76,11 @@ public class DestinationRecyclerAdapter extends RecyclerView.Adapter<Destination
                 context.startActivity(mapIntent);
             }
         });
-        if (destination.getImage() != "null") {
-            Glide.with(context).load(destination.getId()).into(holder.cardImage);
+        if (!destination.getImage().equals("null")) {
+            Common common = new Common();
+            String picUrl = common.getFullUrl(destination.getImage());
+            Glide.with(context).load(picUrl).into(holder.cardImage);
+            Log.d("getImage", destination.getImage());
         } else {
             holder.cardImage.setImageDrawable(context.getDrawable(R.drawable.a));
         }
