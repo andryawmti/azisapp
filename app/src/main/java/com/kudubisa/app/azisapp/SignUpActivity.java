@@ -121,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void signUp(){
-        String url = "/user/signup";
+        String url = "/android-user/signup";
         JSONObject userSignup = new JSONObject();
         try {
             userSignup.put("first_name", etFirstName.getText().toString());

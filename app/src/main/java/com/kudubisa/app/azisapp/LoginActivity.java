@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        MyHTTPRequest myHTTPRequest = new MyHTTPRequest(getApplicationContext(), view, "/user/login",
+        MyHTTPRequest myHTTPRequest = new MyHTTPRequest(getApplicationContext(), view, "/android-user/login",
                 "POST", loginJsonObject, httpResponse, progressBar);
         myHTTPRequest.execute();
     }
