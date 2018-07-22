@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kudubisa.app.azisapp.fragment.AboutFragment;
+import com.kudubisa.app.azisapp.fragment.ContributionFragment;
 import com.kudubisa.app.azisapp.fragment.DestinationFragment;
 import com.kudubisa.app.azisapp.fragment.FavouriteFragment;
 import com.kudubisa.app.azisapp.fragment.HelpFragment;
@@ -52,10 +54,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView profilPiture;
     private TextView profileName;
     private Common common = new Common();
+    private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -96,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new FavouriteFragment();
                     loadFragment(fragment);
                     break;
+                case R.id.show_contribute:
+                    fragment = new ContributionFragment();
+                    loadFragment(fragment);
+                    break;
                 case R.id.show_about:
                     fragment = new AboutFragment();
                     loadFragment(fragment);
@@ -109,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             drawerLayout.closeDrawers();
+            hideFab();
             return true;
         }
     };
@@ -151,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout(View mView){
-        String logoutURL = "/user/logout";
+        String logoutURL = "/android-user/logout";
         JSONObject logoutObject = new JSONObject();
         MyHTTPRequest myHTTPRequest = new MyHTTPRequest(getApplicationContext(), mView,
                 logoutURL, "POST", logoutObject, logoutResponse, progressBar);
@@ -206,5 +216,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void hideFab(){
+        fab.setVisibility(View.GONE);
     }
 }

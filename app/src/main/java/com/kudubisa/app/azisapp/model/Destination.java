@@ -12,6 +12,15 @@ public class Destination {
     private String longitude;
     private String latitude;
     private String favourite;
+    private String approved;
+
+    public String getApproved() {
+        return approved;
+    }
+
+    public void setApproved(String approved) {
+        this.approved = approved;
+    }
 
     public String getFavourite() {
         return favourite;

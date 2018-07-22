@@ -57,6 +57,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:tint="@color/white"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"/>
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
@@ -68,5 +77,4 @@
         app:headerLayout="@layout/navheader"
         app:menu="@menu/navigation_drawer_menu"
         app:elevation="3dp"/>
-
 </android.support.v4.widget.DrawerLayout>
