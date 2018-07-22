@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kudubisa.app.azisapp.fragment.AboutFragment;
 import com.kudubisa.app.azisapp.fragment.DestinationFragment;
+import com.kudubisa.app.azisapp.fragment.FavouriteFragment;
 import com.kudubisa.app.azisapp.fragment.HelpFragment;
 import com.kudubisa.app.azisapp.fragment.MapsFragment;
 import com.kudubisa.app.azisapp.fragment.ProfileFragment;
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.show_destination:
                     fragment = new DestinationFragment();
+                    loadFragment(fragment);
+                    break;
+                case R.id.show_myspot:
+                    fragment = new FavouriteFragment();
                     loadFragment(fragment);
                     break;
                 case R.id.show_about:
