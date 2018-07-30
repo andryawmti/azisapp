@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        MyHTTPRequest myHTTPRequest = new MyHTTPRequest(getApplicationContext(), view, "/user/login",
+        MyHTTPRequest myHTTPRequest = new MyHTTPRequest(getApplicationContext(), view, "/android-user/login",
                 "POST", loginJsonObject, httpResponse, progressBar);
         myHTTPRequest.execute();
     }
@@ -113,12 +113,12 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Welcome "+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                 if (jsonObject.getBoolean("error")==false){
                     String userJsonRaw = jsonObject.getString("user");
-//                    JSONObject userObejct = new JSONObject(userJsonRaw);
                     modifyPreferences(userJsonRaw);
                     ifLoginSuccess();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     };

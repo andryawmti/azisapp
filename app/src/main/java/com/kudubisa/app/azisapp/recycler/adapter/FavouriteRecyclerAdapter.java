@@ -28,19 +28,21 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
- * Created by asus on 7/3/18.
+ * Created by asus on 7/22/18.
  */
 
-public class DestinationRecyclerAdapter extends RecyclerView.Adapter<DestinationRecyclerAdapter.ViewHolder>{
+public class FavouriteRecyclerAdapter extends RecyclerView.Adapter<FavouriteRecyclerAdapter.ViewHolder> {
+
     private List<Destination> destinationList;
     private Context context;
     private Common common;
     ProgressBar progressBar;
-    public DestinationRecyclerAdapter(List<Destination> destinationList, Context context) {
+    public FavouriteRecyclerAdapter(List<Destination> destinationList, Context context) {
         this.destinationList = destinationList;
         this.context = context;
         common = new Common();
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

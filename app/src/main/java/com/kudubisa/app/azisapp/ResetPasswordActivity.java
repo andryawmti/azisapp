@@ -119,7 +119,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private void resetPassword(){
         JSONObject user = getProfile();
-        String url = "/user/reset-password";
+        String url = "/android-user/reset-password";
 
         JSONObject userJson = new JSONObject();
         try {

@@ -33,7 +33,7 @@
             android:id="@+id/show_myspot"
             android:title="@string/show_myspot"
             android:icon="@drawable/ic_favorite_black_24dp"
-            android:iconTint="@color/white"
+            android:iconTint="@color/colorAccent"
             android:iconTintMode="src_in"/>
 
         <item

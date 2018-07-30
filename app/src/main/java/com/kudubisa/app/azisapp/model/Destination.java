@@ -11,6 +11,24 @@ public class Destination {
     private String desc;
     private String longitude;
     private String latitude;
+    private String favourite;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(String favourite) {
+        this.favourite = favourite;
+    }
 
     public String getId() {
         return id;

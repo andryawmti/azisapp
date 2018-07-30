@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/md_keyline">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/picture"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/a_avator"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/picture"
+        android:layout_marginLeft="@dimen/md_keyline"
+        tools:text="@string/item_title"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/article_subheading"/>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/picture"
+        android:layout_marginLeft="@dimen/md_keyline"
+        android:textColor="@color/button_grey"
+        android:textSize="@dimen/list_body"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:ellipsize="end"
+        android:singleLine="true"
+        tools:text="@string/item_desc"/>
+
+    <TextView
+        android:id="@+id/approved_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Approved"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

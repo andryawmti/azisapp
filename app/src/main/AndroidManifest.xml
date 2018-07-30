@@ -36,7 +36,7 @@
         <activity
             android:name="com.kudubisa.app.azisapp.EditProfileActivity"/>
         <activity android:name="com.kudubisa.app.azisapp.EditPasswordActivity"/>
-        <activity android:name="com.kudubisa.app.azisapp.ResetPasswordActivity"></activity>
+        <activity android:name="com.kudubisa.app.azisapp.ResetPasswordActivity"/>
         <activity android:name="com.kudubisa.app.azisapp.SignUpActivity"/>
         <activity
             android:name=".DestinationDetailActivity">
@@ -45,6 +45,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>-->
         </activity>
+        <activity
+            android:name=".AddContributionActivity"/>
+        <activity
+            android:name=".ContributionDetailActivity"/>
+        <activity android:name=".EditContributionActivity"/>
     </application>
 
 </manifest>
