@@ -29,6 +29,9 @@ import com.kudubisa.app.azisapp.remote.AndroidMultiPartEntity;
 import com.kudubisa.app.azisapp.remote.Common;
 import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
 import com.kudubisa.app.azisapp.remote.UploadToServer;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -38,6 +41,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by asus on 7/22/18.
@@ -47,7 +51,18 @@ public class AddContributionActivity extends AppCompatActivity {
     private ImageView selectPicture;
     private ImageView picture;
     private Button btnSave;
-    private EditText edTitle, edLatitude, edLongitude, edDescription;
+
+    @NotEmpty(message = "Title should not be empty")
+    private EditText edTitle;
+
+    @NotEmpty(message = "Latitude should not be empty")
+    private EditText edLatitude;
+
+    @NotEmpty(message = "Longitude should not be empty")
+    private EditText edLongitude;
+
+    @NotEmpty(message = "Description should not be empty")
+    private EditText edDescription;
 
     private static final int STORAGE_PERMISSION_CODE=123;
 
@@ -62,6 +77,9 @@ public class AddContributionActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
+    private Validator validator;
+
+    private View view;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,11 +102,15 @@ public class AddContributionActivity extends AppCompatActivity {
         selectPicture.setOnClickListener(onClickListener);
         btnSave.setOnClickListener(onClickListener);
         picture.setOnClickListener(onClickListener);
+
+        validator = new Validator(this);
+        validator.setValidationListener(validationListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            view = v;
             switch (v.getId()) {
                 case R.id.selectPicture:
                     requestStoragePermission();
@@ -99,7 +121,7 @@ public class AddContributionActivity extends AppCompatActivity {
                     showGalleryIntent();
                     break;
                 case R.id.btnSave:
-                    saveContribution(v);
+                    validator.validate();
                     break;
             }
         }
@@ -264,13 +286,36 @@ public class AddContributionActivity extends AppCompatActivity {
                 JSONObject result = new JSONObject(body);
                 Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
                 if (!result.getBoolean("error")) {
-                    uploadDestinationPicture(realPath, result.getString("destination_id"));
+                    if (!realPath.equals("") || !realPath.isEmpty() || !realPath.equals("null")) {
+                        uploadDestinationPicture(realPath, result.getString("destination_id"));
+                    }
                 } else {
                     Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+
+    Validator.ValidationListener validationListener = new Validator.ValidationListener() {
+        @Override
+        public void onValidationSucceeded() {
+            saveContribution(view);
+        }
+
+        @Override
+        public void onValidationFailed(List<ValidationError> errors) {
+            for (ValidationError error : errors) {
+                View view = error.getView();
+                String message = error.getCollatedErrorMessage(getApplicationContext());
+
+                // Display error messages ;)
+                if (view instanceof EditText) {
+                    ((EditText) view).setError(message);
+                }
             }
         }
     };
