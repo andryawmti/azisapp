@@ -56,15 +56,11 @@ public class ContributionRecyclerAdapter extends RecyclerView.Adapter<Contributi
                 intent.putExtra("picture", destination.getImage());
                 intent.putExtra("longitude", destination.getLongitude());
                 intent.putExtra("latitude", destination.getLatitude());
+                intent.putExtra("status", destination.getStatus());
                 v.getContext().startActivity(intent);
             }
         });
-
-        if (destination.getApproved().equals("1")) {
-            holder.approvedStatus.setText("Approved");
-        } else {
-            holder.approvedStatus.setText("Pending");
-        }
+        holder.approvedStatus.setText(destination.getStatus());
     }
 
     @Override

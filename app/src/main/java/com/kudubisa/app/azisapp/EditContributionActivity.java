@@ -1,6 +1,5 @@
 package com.kudubisa.app.azisapp;
 
-import android.*;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,7 +10,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,9 +20,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kudubisa.app.azisapp.remote.AndroidMultiPartEntity;
 import com.kudubisa.app.azisapp.remote.Common;
 import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
@@ -40,10 +38,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Created by asus on 7/22/18.
+ * Created by asus on 7/29/18.
  */
 
-public class AddContributionActivity extends AppCompatActivity {
+public class EditContributionActivity extends AppCompatActivity {
     private ImageView selectPicture;
     private ImageView picture;
     private Button btnSave;
@@ -56,22 +54,26 @@ public class AddContributionActivity extends AppCompatActivity {
     private String realPath = null;
     private Bitmap mImageBitmap;
 
-    private Context context;
-
-    private Common common;
-
     private ProgressBar progressBar;
 
+    private Common common;
+    private Context context;
+
+    private Intent intent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_contribution);
-        context = getApplicationContext();
+        setContentView(R.layout.activity_edit_contribution);
+
         common = new Common();
+        context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Contribute");
+        toolbar.setTitle("Edit Contribution");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        intent = getIntent();
+
         selectPicture = (ImageView) findViewById(R.id.selectPicture);
         btnSave = (Button) findViewById(R.id.btnSave);
         picture = (ImageView) findViewById(R.id.picture);
@@ -84,6 +86,22 @@ public class AddContributionActivity extends AppCompatActivity {
         selectPicture.setOnClickListener(onClickListener);
         btnSave.setOnClickListener(onClickListener);
         picture.setOnClickListener(onClickListener);
+
+        edTitle.setText(intent.getStringExtra("title"));
+        edLatitude.setText(intent.getStringExtra("latitude"));
+        edLongitude.setText(intent.getStringExtra("longitude"));
+        edDescription.setText(intent.getStringExtra("description"));
+        Glide.with(context).load(common.getFullUrl(intent.getStringExtra("picture"))).into(picture);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -104,17 +122,6 @@ public class AddContributionActivity extends AppCompatActivity {
             }
         }
     };
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                getSupportFragmentManager().popBackStack();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * Show the gallery intent, picking picture for profile
@@ -232,6 +239,7 @@ public class AddContributionActivity extends AppCompatActivity {
         JSONObject params = new JSONObject();
         String api_token = "";
         String userId = "";
+        String desId = intent.getStringExtra("id");
         try {
             JSONObject userJson = new JSONObject(common.getUserRaw(context));
             api_token = userJson.getString("api_token");
@@ -245,12 +253,11 @@ public class AddContributionActivity extends AppCompatActivity {
             params.put("latitude", edLatitude.getText().toString());
             params.put("longitude", edLongitude.getText().toString());
             params.put("description", edDescription.getText().toString());
-            params.put("user_id", userId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        String url = "/api/destination/add-contribution?api_token="+api_token;
+        String url = "/api/destination/edit-contribution/"+desId+"?api_token="+api_token;
 
         MyHTTPRequest myHTTPRequest = new MyHTTPRequest(context, view, url, "POST", params, response, progressBar);
         myHTTPRequest.execute();
@@ -264,7 +271,9 @@ public class AddContributionActivity extends AppCompatActivity {
                 JSONObject result = new JSONObject(body);
                 Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
                 if (!result.getBoolean("error")) {
-                    uploadDestinationPicture(realPath, result.getString("destination_id"));
+                    if (!realPath.equals("") || !realPath.isEmpty() || !realPath.equals("null")) {
+                        uploadDestinationPicture(realPath, result.getString("destination_id"));
+                    }
                 } else {
                     Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
                 }

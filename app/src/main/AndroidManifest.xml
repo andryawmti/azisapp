@@ -49,6 +49,7 @@
             android:name=".AddContributionActivity"/>
         <activity
             android:name=".ContributionDetailActivity"/>
+        <activity android:name=".EditContributionActivity"/>
     </application>
 
 </manifest>

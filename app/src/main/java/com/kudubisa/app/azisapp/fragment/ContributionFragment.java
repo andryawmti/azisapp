@@ -110,7 +110,7 @@ public class ContributionFragment extends Fragment{
                         destination.setLatitude(destJson.getString("latitude"));
                         destination.setLongitude(destJson.getString("longitude"));
                         destination.setImage(destJson.getString("picture"));
-                        destination.setApproved(destJson.getString("is_approved"));
+                        destination.setStatus(destJson.getString("status"));
                         destinationList.add(destination);
                     }
 

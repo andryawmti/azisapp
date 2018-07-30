@@ -12,14 +12,14 @@ public class Destination {
     private String longitude;
     private String latitude;
     private String favourite;
-    private String approved;
+    private String status;
 
-    public String getApproved() {
-        return approved;
+    public String getStatus() {
+        return status;
     }
 
-    public void setApproved(String approved) {
-        this.approved = approved;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFavourite() {

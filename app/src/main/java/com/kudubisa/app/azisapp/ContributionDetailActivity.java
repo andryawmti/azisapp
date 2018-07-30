@@ -8,8 +8,11 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,6 +31,7 @@ public class ContributionDetailActivity extends AppCompatActivity {
     private Common common;
     private Context context;
     private Intent intent;
+    ImageButton ibEdit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class ContributionDetailActivity extends AppCompatActivity {
         common = new Common();
         context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ibEdit = (ImageButton) findViewById(R.id.ibEdit);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -56,6 +61,18 @@ public class ContributionDetailActivity extends AppCompatActivity {
         Double latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         Double longitude = Double.parseDouble(intent.getStringExtra("longitude"));
         initLocatinMap(latitude, longitude, intent.getStringExtra("title"));
+
+        ibEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!intent.getStringExtra("status").equals("approved")) {
+                    intent.setClass(context, EditContributionActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(context, "You can't edit destination when the status is already approved", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void initLocatinMap(final Double latitude, final Double longitude, final String title) {
