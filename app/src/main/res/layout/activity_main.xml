@@ -40,14 +40,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/welcome_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="@string/welcome_message"
-                    style="@style/TextAppearance.AppCompat.Title"/>
+                    style="@style/TextAppearance.AppCompat.Title"/>-->
+                <ImageView
+                    android:id="@+id/visitIndonesia"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    app:srcCompat="@drawable/visitindonesia2"
+                    android:scaleType="fitCenter"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
 
