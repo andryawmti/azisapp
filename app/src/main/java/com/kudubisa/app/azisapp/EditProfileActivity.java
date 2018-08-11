@@ -95,6 +95,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     Common common;
 
+    private RelativeLayout relEditPassword;
+    private RelativeLayout relEditEmail;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,8 +118,8 @@ public class EditProfileActivity extends AppCompatActivity {
         fotoProfile = (ImageView) findViewById(R.id.foto_profile);
 
         RelativeLayout relEditAddress = (RelativeLayout) findViewById(R.id.rel_edit_address);
-        RelativeLayout relEditEmail = (RelativeLayout) findViewById(R.id.rel_edit_email);
-        RelativeLayout relEditPassword = (RelativeLayout) findViewById(R.id.rel_edit_password);
+        relEditEmail = (RelativeLayout) findViewById(R.id.rel_edit_email);
+        relEditPassword = (RelativeLayout) findViewById(R.id.rel_edit_password);
         RelativeLayout relEditBirthdate = (RelativeLayout) findViewById(R.id.relEditBirthDate);
 
         etAddress = (EditText) findViewById(R.id.etAddress);
@@ -145,6 +147,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private void setDataField(){
         JSONObject userJson = getProfile();
         try {
+            String gmailId = userJson.getString("gmail_id");
+            String fbId = userJson.getString("fb_id");
             tvBirthdate.setText(userJson.getString("birth_date"));
             etFirstName.setText( userJson.getString("first_name"));
             etLastName.setText(userJson.getString("last_name"));
@@ -153,6 +157,7 @@ public class EditProfileActivity extends AppCompatActivity {
             String photoUrl = common.getFullUrl(userJson.getString("photo"));
             Log.d("url", photoUrl);
             Glide.with(context).load(photoUrl).into(fotoProfile);
+            isGoogleFacebookUser(gmailId, fbId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -442,6 +447,16 @@ public class EditProfileActivity extends AppCompatActivity {
             }else{
                 Toast.makeText(context,"Permission Granted", Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    /**
+     * Check if user are login using google or facebook account, if so, we will need to disable email and password edit
+     */
+    private void isGoogleFacebookUser(String gmailId, String fbId) {
+        if (!gmailId.equals("null") || !fbId.equals("null")) {
+            relEditEmail.setVisibility(View.GONE);
+            relEditPassword.setVisibility(View.GONE);
         }
     }
 

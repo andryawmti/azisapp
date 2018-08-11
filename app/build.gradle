@@ -46,6 +46,12 @@ dependencies {
     compile 'com.google.android.gms:play-services:12.0.1'
     compile 'com.google.maps:google-maps-services:0.1.20'
 
+    //google play service auth for authorize user using google api
+    compile 'com.google.android.gms:play-services-auth:12.0.1'
+
+    //facebook account integration
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
