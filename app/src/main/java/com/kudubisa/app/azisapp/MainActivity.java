@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navView.getHeaderView(0);
         profilPiture = (ImageView) headerView.findViewById(R.id.navheader_profile);
         profileName = (TextView) headerView.findViewById(R.id.navheader_profile_name);
-        setNavHederProfile();
+        setNavHeaderProfile();
         navView.setNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
@@ -173,11 +173,12 @@ public class MainActivity extends AppCompatActivity {
         public void response(String body, View view) {
             try {
                 JSONObject jsonObject = new JSONObject(body);
-                Log.d("MainActivity", "response_executed");
-                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                if (jsonObject.getBoolean("error")==false) {
+                if (jsonObject.getBoolean("error")) {
+                    Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                } else {
                     modifyPreferences();
                     ifLogoutSuccess();
+                    Toast.makeText(context, "You are logged out", Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
-    public void setNavHederProfile() {
+    public void setNavHeaderProfile() {
         try {
             JSONObject jsonObject = new JSONObject(common.getUserRaw(context));
             String photoPath = common.getFullUrl(jsonObject.getString("photo"));

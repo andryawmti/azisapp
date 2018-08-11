@@ -81,4 +81,18 @@ public class ProfileFragment extends Fragment{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        JSONObject user;
+        common = new Common();
+        userRaw = common.getUserRaw(getContext());
+        try {
+            user = new JSONObject(userRaw);
+            setFieldValues(user);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
