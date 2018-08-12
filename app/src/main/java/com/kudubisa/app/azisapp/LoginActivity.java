@@ -105,10 +105,14 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_login:
-                    loginCredentials.setEmail(loginEmail.getText().toString());
-                    loginCredentials.setPassword(loginPassword.getText().toString());
+                    String email = loginEmail.getText().toString();
+                    String password = loginPassword.getText().toString();
+                    loginCredentials.setEmail(email);
+                    loginCredentials.setPassword(password);
                     loginCredentials.setRemember(false);
-                    login(loginCredentials.getEmail(), loginCredentials.getPassword()); //it will do login check and return UserLogin model
+                    if (!(email.isEmpty() && password.isEmpty())) {
+                        login(email, password);
+                    }
                     break;
                 case R.id.btn_signup:
                     Intent intent = new Intent(context, SignUpActivity.class);
@@ -135,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         loginCredentials.setEmail(email);
         loginCredentials.setPassword(password);
         if (!(email.isEmpty() && password.isEmpty())) {
-            login(loginCredentials.getEmail(), loginCredentials.getPassword());
+            login(email, password);
         }
     }
 
@@ -205,7 +209,11 @@ public class LoginActivity extends AppCompatActivity {
             Intent signInIntent = googleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
         } else {
-            login(account.getEmail(), account.getId()+account.getEmail());
+            String email = account.getEmail();
+            String password = account.getId()+account.getEmail();
+            loginCredentials.setEmail(email);
+            loginCredentials.setPassword(password);
+            login(email, password);
         }
     }
 
@@ -267,6 +275,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (bodyJson.getBoolean("error")) {
                         Toast.makeText(context, bodyJson.getString("message"), Toast.LENGTH_LONG).show();
                     } else {
+                        loginCredentials.setEmail(mEmail);
+                        loginCredentials.setPassword(mPassword);
                         login(mEmail, mPassword);
                     }
                 } catch (JSONException e) {
@@ -343,6 +353,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (bodyJson.getBoolean("error")) {
                             Toast.makeText(context, bodyJson.getString("message"), Toast.LENGTH_LONG).show();
                         } else {
+                            loginCredentials.setEmail(mEmail);
+                            loginCredentials.setPassword(mPassword);
                             login(mEmail, mPassword);
                         }
                     } catch (JSONException e) {
