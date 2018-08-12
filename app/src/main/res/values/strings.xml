@@ -29,5 +29,6 @@
     <string name="contribute">Contribute</string>
     <string name="facebook_app_id">435107117009773</string>
     <string name="fb_login_protocol_scheme">fb435107117009773</string>
+    <string name="show_home">Home</string>
 
 </resources>

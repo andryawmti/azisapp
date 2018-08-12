@@ -34,6 +34,7 @@ import com.kudubisa.app.azisapp.fragment.ContributionFragment;
 import com.kudubisa.app.azisapp.fragment.DestinationFragment;
 import com.kudubisa.app.azisapp.fragment.FavouriteFragment;
 import com.kudubisa.app.azisapp.fragment.HelpFragment;
+import com.kudubisa.app.azisapp.fragment.HomeFragment;
 import com.kudubisa.app.azisapp.fragment.MapsFragment;
 import com.kudubisa.app.azisapp.fragment.ProfileFragment;
 import com.kudubisa.app.azisapp.remote.Common;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         profileName = (TextView) headerView.findViewById(R.id.navheader_profile_name);
         setNavHeaderProfile();
         navView.setNavigationItemSelectedListener(navigationItemSelectedListener);
+        loadFragment(new HomeFragment());
     }
 
     NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
@@ -89,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             item.setChecked(true);
             switch (item.getItemId()){
+                case R.id.show_home:
+                    fragment = new HomeFragment();
+                    loadFragment(fragment);
+                    break;
                 case R.id.profile_settings:
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
@@ -219,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void hideFab(){
+    public void hideFab(){
         fab.setVisibility(View.GONE);
     }
 }

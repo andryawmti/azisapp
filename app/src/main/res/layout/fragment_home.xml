@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/secondRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstRow">
+
+        <ImageButton
+            android:id="@+id/imgBtnContribute"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/jigsaw" />
+
+        <ImageButton
+            android:id="@+id/imgBtnProfile"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:layout_marginStart="@dimen/home_icon_margin"
+            android:layout_toEndOf="@id/imgBtnContribute"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/user" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgBtnContribute"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-10dp"
+            android:text="Contribute"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgBtnProfile"
+            android:layout_marginStart="122dp"
+            android:layout_marginTop="-10dp"
+            android:text="Profile"
+            android:textColor="@color/colorAccent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/thirdRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondRow">
+
+        <ImageButton
+            android:id="@+id/imgBtnAbout"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/info" />
+
+        <ImageButton
+            android:id="@+id/imgBtnHelp"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:layout_marginStart="@dimen/home_icon_margin"
+            android:layout_toEndOf="@id/imgBtnAbout"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/question" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgBtnAbout"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="-10dp"
+            android:text="About"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgBtnHelp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="-10dp"
+            android:text="Help"
+            android:textColor="@color/colorAccent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/firstRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imgBtnAllSpot"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/tent" />
+
+        <ImageButton
+            android:id="@+id/imgBtnMySpot"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="@dimen/home_icon_size"
+            android:layout_height="@dimen/home_icon_size"
+            android:layout_marginStart="@dimen/home_icon_margin"
+            android:layout_toEndOf="@id/imgBtnAllSpot"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/like" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="All Spot"
+            android:layout_below="@id/imgBtnAllSpot"
+            android:layout_marginTop="-10dp"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="Favourite Spot"
+            android:layout_below="@id/imgBtnMySpot"
+            android:layout_marginTop="-10dp"
+            android:layout_marginStart="100dp"/>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
