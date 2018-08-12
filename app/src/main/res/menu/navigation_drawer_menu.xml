@@ -26,28 +26,32 @@
             android:title="@string/profile_settings"
             android:icon="@drawable/ic_account_circle_black_24dp"
             android:iconTint="@android:color/white"
-            android:iconTintMode="src_in"/>
+            android:iconTintMode="src_in"
+            android:visible="false"/>
 
         <item
             android:id="@+id/show_destination"
             android:title="@string/show_destination"
             android:icon="@drawable/ic_photo_library_black_24dp"
             android:iconTint="@color/white"
-            android:iconTintMode="src_in"/>
+            android:iconTintMode="src_in"
+            android:visible="false"/>
 
         <item
             android:id="@+id/show_myspot"
             android:title="@string/show_myspot"
             android:icon="@drawable/ic_favorite_black_24dp"
             android:iconTint="@color/colorAccent"
-            android:iconTintMode="src_in"/>
+            android:iconTintMode="src_in"
+            android:visible="false"/>
 
         <item
             android:id="@+id/show_contribute"
             android:title="@string/contribute"
             android:icon="@drawable/ic_queue_play_next_black_24dp"
             android:iconTint="@color/white"
-            android:iconTintMode="src_in"/>
+            android:iconTintMode="src_in"
+            android:visible="false"/>
 
         <item
             android:id="@+id/show_about"

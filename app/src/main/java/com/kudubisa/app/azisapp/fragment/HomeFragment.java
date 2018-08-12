@@ -24,7 +24,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).hideFab();
+        ((MainActivity) getActivity()).hideFab();((MainActivity) getActivity()).setActionbarTitle("Home");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ImageButton imgBtnAllSpot = (ImageButton) view.findViewById(R.id.imgBtnAllSpot);
         ImageButton imgBtnMySpot = (ImageButton) view.findViewById(R.id.imgBtnMySpot);
