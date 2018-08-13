@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import com.kudubisa.app.azisapp.remote.UploadToServer;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Pattern;
 
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -54,11 +56,12 @@ public class EditContributionActivity extends AppCompatActivity {
     private EditText edTitle;
 
     @NotEmpty(message = "Latitude should not be empty")
+    @Pattern( regex = "([1-9 \\-])\\d+", message = "Latitude is not valid")
     private EditText edLatitude;
 
     @NotEmpty(message = "Longitude should not be empty")
+    @Pattern( regex = "([1-9 \\-])\\d+", message = "Longitude is not valid")
     private EditText edLongitude;
-
     @NotEmpty(message = "Description should not be empty")
     private EditText edDescription;
 
@@ -66,7 +69,7 @@ public class EditContributionActivity extends AppCompatActivity {
 
     int PICK_IMAGE_REQUEST=1;
     Uri filePath=null;
-    private String realPath = null;
+    private String realPath = "";
     private Bitmap mImageBitmap;
 
     private ProgressBar progressBar;
@@ -192,6 +195,7 @@ public class EditContributionActivity extends AppCompatActivity {
      * @param desId
      */
     private void uploadDestinationPicture(String mFilePath, String desId){
+        showProgressBar();
         AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
                 new AndroidMultiPartEntity.ProgressListener() {
 
@@ -220,15 +224,17 @@ public class EditContributionActivity extends AppCompatActivity {
         UploadToServer uploadToServer = new UploadToServer(progressBar, entity, new UploadToServer.ResultUpload() {
             @Override
             public void resultUploadExecute(String result) {
+                hideProgressBar();
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-                    if (!jsonObject.getBoolean("error")) {
-                        Log.d("result", result);
+                    if (jsonObject.getBoolean("error")) {
+                        Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "Contribution updated", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, url);
@@ -289,16 +295,16 @@ public class EditContributionActivity extends AppCompatActivity {
     MyHTTPRequest.HTTPResponse response = new MyHTTPRequest.HTTPResponse() {
         @Override
         public void response(String body, View view) {
-            Toast.makeText(context, body, Toast.LENGTH_SHORT).show();
             try {
-                JSONObject result = new JSONObject(body);
-                Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
-                if (!result.getBoolean("error")) {
-                    if (!realPath.equals("") || !realPath.isEmpty() || !realPath.equals("null")) {
-                        uploadDestinationPicture(realPath, result.getString("destination_id"));
-                    }
+                JSONObject bodyJson = new JSONObject(body);
+                if (bodyJson.getBoolean("error")) {
+                    Toast.makeText(context, bodyJson.getString("message"), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, result.getString("message"), Toast.LENGTH_SHORT).show();
+                    if ( !realPath.equals("") ) {
+                        uploadDestinationPicture(realPath, bodyJson.getString("destination_id"));
+                    } else {
+                        Toast.makeText(context, "Contribution Updated", Toast.LENGTH_LONG).show();
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -326,4 +332,15 @@ public class EditContributionActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void showProgressBar() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBar.setVisibility(View.GONE);
+    }
 }

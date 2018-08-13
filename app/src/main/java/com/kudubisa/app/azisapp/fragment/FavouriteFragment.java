@@ -29,7 +29,7 @@ import java.util.List;
  * Created by asus on 7/22/18.
  */
 
-public class FavouriteFragment extends Fragment {
+public class FavouriteFragment extends Fragment{
     private View view;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -51,7 +51,7 @@ public class FavouriteFragment extends Fragment {
         return view;
     }
 
-    private void initDestinationRecyclerView(View view) {
+    public void initDestinationRecyclerView(View view) {
 
         JSONObject user = null;
         String apiToken = "";
@@ -92,7 +92,8 @@ public class FavouriteFragment extends Fragment {
                     destinationList.add(destination);
                 }
 
-                FavouriteRecyclerAdapter favouriteRecyclerAdapter = new FavouriteRecyclerAdapter(destinationList, getContext());
+                FavouriteRecyclerAdapter favouriteRecyclerAdapter =
+                        new FavouriteRecyclerAdapter(destinationList, getActivity(), listener);
                 recyclerView.setAdapter(favouriteRecyclerAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -100,6 +101,13 @@ public class FavouriteFragment extends Fragment {
                 e.printStackTrace();
             }
 
+        }
+    };
+
+    FavouriteRecyclerAdapter.FavouriteItemClickedListener listener = new FavouriteRecyclerAdapter.FavouriteItemClickedListener() {
+        @Override
+        public void onItemClicked() {
+            initDestinationRecyclerView(view);
         }
     };
 }

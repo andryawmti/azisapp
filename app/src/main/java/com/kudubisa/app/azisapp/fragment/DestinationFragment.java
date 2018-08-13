@@ -91,7 +91,10 @@ public class DestinationFragment extends Fragment {
                     destination.setLongitude(destJson.getString("longitude"));
                     destination.setImage(destJson.getString("picture"));
                     destination.setFavourite(destJson.getString("favourite"));
-                    destinationList.add(destination);
+                    String status = destJson.getString("status");
+                    if (status.equals("approved") || status.equals("null")) {
+                        destinationList.add(destination);
+                    }
                 }
 
                 DestinationRecyclerAdapter destinationRecyclerAdapter = new DestinationRecyclerAdapter(destinationList, getContext());

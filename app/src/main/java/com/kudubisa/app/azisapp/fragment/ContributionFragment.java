@@ -125,4 +125,10 @@ public class ContributionFragment extends Fragment{
 
         }
     };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initDestinationRecyclerView(view);
+    }
 }

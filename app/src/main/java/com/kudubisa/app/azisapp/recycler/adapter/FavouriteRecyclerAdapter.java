@@ -3,6 +3,8 @@ package com.kudubisa.app.azisapp.recycler.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kudubisa.app.azisapp.DestinationDetailActivity;
 import com.kudubisa.app.azisapp.R;
+import com.kudubisa.app.azisapp.fragment.FavouriteFragment;
 import com.kudubisa.app.azisapp.model.Destination;
 import com.kudubisa.app.azisapp.remote.Common;
 import com.kudubisa.app.azisapp.remote.MyHTTPRequest;
@@ -36,13 +39,18 @@ public class FavouriteRecyclerAdapter extends RecyclerView.Adapter<FavouriteRecy
     private List<Destination> destinationList;
     private Context context;
     private Common common;
-    ProgressBar progressBar;
-    public FavouriteRecyclerAdapter(List<Destination> destinationList, Context context) {
+    private ProgressBar progressBar;
+    private FavouriteItemClickedListener itemClickedListener;
+    public FavouriteRecyclerAdapter(List<Destination> destinationList, Context context, FavouriteItemClickedListener listener) {
         this.destinationList = destinationList;
         this.context = context;
         common = new Common();
+        this.itemClickedListener = listener;
     }
 
+    public interface FavouriteItemClickedListener {
+        void onItemClicked();
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -166,6 +174,7 @@ public class FavouriteRecyclerAdapter extends RecyclerView.Adapter<FavouriteRecy
                     } else {
                         favBtn.setColorFilter(context.getResources().getColor(R.color.button_grey));
                     }
+                    itemClickedListener.onItemClicked();
                 } else {
                     Toast.makeText(context, "Something was wrong dude sorry", Toast.LENGTH_SHORT).show();
                 }
