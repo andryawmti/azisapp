@@ -22,9 +22,18 @@
     <string name="button_visit">Visit</string>
     <string name="show_destination">All Spot</string>
     <string name="show_about">About</string>
-    <string name="about_app">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur omnis rem? Animi commodi deleniti deserunt ducimus facere iste recusandae velit? Aperiam doloremque facere magni maxime nulla, odio perferendis soluta.</string>
+    <string name="about_app">
+        Wisata Kebumen application is an app that were made based on a need of people who want to visit so many attraction spot in kebumen, with this app existence we hope it can help people to reach their destination easily. You can view the list of destination and use google maps navigation to help you found the place. Not only that, but you can also contribute to this app by adding more spot through contribute menu.
+    </string>
     <string name="show_help">Help</string>
-    <string name="help">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi eaque, exercitationem id labore soluta? Alias blanditiis, consequuntur ducimus laboriosam maxime nam obcaecati qui quis repellat sapiente ullam voluptas voluptatibus?</string>
+    <string name="help">
+        1. Open Wisata Kebumen App then register if you have not ben registered, and then login with your credentials.
+        2. On Home screen, click on All Spot menu. You will be directed to a new screen which will show you the list of destination.
+        3. Coose one destination that you like by touching the screen on the related destination. From this screen you can directly navigate to the destination by click on the Visit menu.
+        4. You will see the detail of the destination that you choose before. From here you can see the description and the maps of the location.
+        5. If click the visit menu, then the new screen will appear, you will see a maps navigation app which will guide you towards your destination.
+        6. Enjoy your visit.
+    </string>
     <string name="show_myspot">My Spot</string>
     <string name="contribute">Contribute</string>
     <string name="facebook_app_id">435107117009773</string>
