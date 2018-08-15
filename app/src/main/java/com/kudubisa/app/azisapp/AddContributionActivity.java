@@ -1,8 +1,10 @@
 package com.kudubisa.app.azisapp;
 
 import android.*;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -52,16 +54,16 @@ import java.util.List;
 public class AddContributionActivity extends AppCompatActivity {
     private ImageView selectPicture;
     private ImageView picture;
-    private Button btnSave;
+    private Button btnSave, btnOpenMaps;
     @NotEmpty(message = "Title should not be empty")
     private EditText edTitle;
 
     @NotEmpty(message = "Latitude should not be empty")
-    @Pattern( regex = "([1-9 \\-])\\d+", message = "Latitude is not valid")
+    //@Pattern( regex = "([1-9 \\- .])\\d+", message = "Latitude is not valid")
     private EditText edLatitude;
 
     @NotEmpty(message = "Longitude should not be empty")
-    @Pattern( regex = "([1-9 \\-])\\d+", message = "Longitude is not valid")
+    //@Pattern( regex = "([1-9 \\- .])\\d+", message = "Longitude is not valid")
     private EditText edLongitude;
 
     @NotEmpty(message = "Description should not be empty")
@@ -83,6 +85,9 @@ public class AddContributionActivity extends AppCompatActivity {
     private Validator validator;
 
     private View view;
+
+    private Intent intent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +100,7 @@ public class AddContributionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         selectPicture = (ImageView) findViewById(R.id.selectPicture);
         btnSave = (Button) findViewById(R.id.btnSave);
+        btnOpenMaps = (Button) findViewById(R.id.btnOpenMaps);
         picture = (ImageView) findViewById(R.id.picture);
         edTitle = (EditText) findViewById(R.id.edTitle);
         edLatitude = (EditText) findViewById(R.id.edLatitude);
@@ -105,9 +111,20 @@ public class AddContributionActivity extends AppCompatActivity {
         selectPicture.setOnClickListener(onClickListener);
         btnSave.setOnClickListener(onClickListener);
         picture.setOnClickListener(onClickListener);
+        btnOpenMaps.setOnClickListener(onClickListener);
 
         validator = new Validator(this);
         validator.setValidationListener(validationListener);
+
+        try {
+            intent = getIntent();
+            edLatitude.setText(intent.getStringExtra("latitude"));
+            edLongitude.setText(intent.getStringExtra("longitude"));
+            edTitle.setText(intent.getStringExtra("title"));
+            edDescription.setText(intent.getStringExtra("description"));
+        } catch (Exception e) {
+            Log.e("Add Contribution Error", e.getLocalizedMessage());
+        }
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -129,6 +146,9 @@ public class AddContributionActivity extends AppCompatActivity {
                     } else {
                         validator.validate();
                     }
+                    break;
+                case R.id.btnOpenMaps:
+                    openMaps();
                     break;
             }
         }
@@ -352,5 +372,13 @@ public class AddContributionActivity extends AppCompatActivity {
     private void hideProgressBar() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void openMaps() {
+        Intent intent = new Intent(context, PickLatLongActivity.class);
+        intent.putExtra("title", edTitle.getText().toString());
+        intent.putExtra("description", edDescription.getText().toString());
+        this.finish();
+        startActivity(intent);
     }
 }
