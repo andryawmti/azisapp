@@ -378,6 +378,7 @@ public class AddContributionActivity extends AppCompatActivity {
         Intent intent = new Intent(context, PickLatLongActivity.class);
         intent.putExtra("title", edTitle.getText().toString());
         intent.putExtra("description", edDescription.getText().toString());
+        intent.putExtra("caller", "add");
         this.finish();
         startActivity(intent);
     }

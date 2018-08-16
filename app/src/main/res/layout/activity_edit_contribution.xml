@@ -69,6 +69,17 @@
                     android:hint="Longitude ex: -2342122"/>
             </android.support.design.widget.TextInputLayout>
 
+            <Button
+                android:id="@+id/btnOpenMaps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Open Maps"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/ilDescription"
                 android:layout_width="match_parent"

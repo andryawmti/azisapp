@@ -43,6 +43,8 @@ public class PickLatLongActivity extends AppCompatActivity implements
 
     private String title;
     private String description;
+    private String caller;
+    private String currentPicture;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +57,12 @@ public class PickLatLongActivity extends AppCompatActivity implements
             Intent intent = getIntent();
             title = intent.getStringExtra("title");
             description = intent.getStringExtra("description");
+            caller = intent.getStringExtra("caller");
+            if (caller.equals("edit")) {
+                latitude = Double.parseDouble(intent.getStringExtra("latitude"));
+                longitude = Double.parseDouble(intent.getStringExtra("longitude"));
+                currentPicture = intent.getStringExtra("picture");
+            }
         } catch (Exception e) {
             Log.d("picklocation error", e.getLocalizedMessage());
         }
@@ -113,11 +121,14 @@ public class PickLatLongActivity extends AppCompatActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnPickLatLong:
-                Intent intent = new Intent(this, AddContributionActivity.class);
+                Intent intent = new Intent(this, (caller.equals("add"))?AddContributionActivity.class:EditContributionActivity.class);
                 intent.putExtra("latitude", String.valueOf(latitude));
                 intent.putExtra("longitude", String.valueOf(longitude));
                 intent.putExtra("title", title);
                 intent.putExtra("description", description);
+                if (caller.equals("edit") ) {
+                    intent.putExtra("picture", currentPicture);
+                }
                 this.finish();
                 startActivity(intent);
                 break;
@@ -127,11 +138,17 @@ public class PickLatLongActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, AddContributionActivity.class);
-        intent.putExtra("latitude", "");
-        intent.putExtra("longitude", "");
+        Intent intent = new Intent(this, (caller.equals("add"))?AddContributionActivity.class:EditContributionActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("description", description);
+        if (caller.equals("edit")) {
+            intent.putExtra("latitude", String.valueOf(latitude));
+            intent.putExtra("longitude", String.valueOf(longitude));
+            intent.putExtra("picture", currentPicture);
+        } else {
+            intent.putExtra("latitude", "");
+            intent.putExtra("longitude", "");
+        }
         this.finish();
         startActivity(intent);
     }
