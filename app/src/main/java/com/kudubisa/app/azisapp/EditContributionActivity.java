@@ -50,17 +50,17 @@ import java.util.List;
 public class EditContributionActivity extends AppCompatActivity {
     private ImageView selectPicture;
     private ImageView picture;
-    private Button btnSave;
+    private Button btnSave, btnOpenMaps;
 
     @NotEmpty(message = "Title should not be empty")
     private EditText edTitle;
 
     @NotEmpty(message = "Latitude should not be empty")
-    @Pattern( regex = "([1-9 \\-])\\d+", message = "Latitude is not valid")
+    //@Pattern( regex = "([1-9 \\-])\\d+", message = "Latitude is not valid")
     private EditText edLatitude;
 
     @NotEmpty(message = "Longitude should not be empty")
-    @Pattern( regex = "([1-9 \\-])\\d+", message = "Longitude is not valid")
+    //@Pattern( regex = "([1-9 \\-])\\d+", message = "Longitude is not valid")
     private EditText edLongitude;
     @NotEmpty(message = "Description should not be empty")
     private EditText edDescription;
@@ -82,6 +82,7 @@ public class EditContributionActivity extends AppCompatActivity {
     private Validator validator;
 
     private View view;
+    private String currentPicture;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,10 +95,9 @@ public class EditContributionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        intent = getIntent();
-
         selectPicture = (ImageView) findViewById(R.id.selectPicture);
         btnSave = (Button) findViewById(R.id.btnSave);
+        btnOpenMaps = (Button) findViewById(R.id.btnOpenMaps);
         picture = (ImageView) findViewById(R.id.picture);
         edTitle = (EditText) findViewById(R.id.edTitle);
         edLatitude = (EditText) findViewById(R.id.edLatitude);
@@ -108,15 +108,22 @@ public class EditContributionActivity extends AppCompatActivity {
         selectPicture.setOnClickListener(onClickListener);
         btnSave.setOnClickListener(onClickListener);
         picture.setOnClickListener(onClickListener);
-
-        edTitle.setText(intent.getStringExtra("title"));
-        edLatitude.setText(intent.getStringExtra("latitude"));
-        edLongitude.setText(intent.getStringExtra("longitude"));
-        edDescription.setText(intent.getStringExtra("description"));
-        Glide.with(context).load(common.getFullUrl(intent.getStringExtra("picture"))).into(picture);
+        btnOpenMaps.setOnClickListener(onClickListener);
 
         validator = new Validator(this);
         validator.setValidationListener(validationListener);
+
+        try {
+            intent = getIntent();
+            edTitle.setText(intent.getStringExtra("title"));
+            edLatitude.setText(intent.getStringExtra("latitude"));
+            edLongitude.setText(intent.getStringExtra("longitude"));
+            edDescription.setText(intent.getStringExtra("description"));
+            currentPicture = intent.getStringExtra("picture");
+            Glide.with(context).load(common.getFullUrl(currentPicture)).into(picture);
+        } catch (Exception e) {
+            Log.e("Edit Contribution Error", e.getLocalizedMessage());
+        }
     }
 
     @Override
@@ -144,6 +151,9 @@ public class EditContributionActivity extends AppCompatActivity {
                     break;
                 case R.id.btnSave:
                     validator.validate();
+                    break;
+                case R.id.btnOpenMaps:
+                    openMaps();
                     break;
             }
         }
@@ -342,5 +352,17 @@ public class EditContributionActivity extends AppCompatActivity {
     private void hideProgressBar() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void openMaps() {
+        Intent intent = new Intent(context, PickLatLongActivity.class);
+        intent.putExtra("title", edTitle.getText().toString());
+        intent.putExtra("description", edDescription.getText().toString());
+        intent.putExtra("latitude", edLatitude.getText().toString());
+        intent.putExtra("longitude", edLongitude.getText().toString());
+        intent.putExtra("picture", currentPicture);
+        intent.putExtra("caller", "edit");
+        this.finish();
+        startActivity(intent);
     }
 }
